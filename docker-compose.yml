@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    command: [nginx-debug, '-g', 'daemon off;']
+    network_mode: host
+    environment:
+      - NG_PORT=19002
+      - NG_HOST=localhost
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./logs/:/etc/nginx/logs/:rw
