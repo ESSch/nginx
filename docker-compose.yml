@@ -1,12 +1,25 @@
 version: '3'
 
 services:
-  nginx:
+  db:
     image: nginx
     command: [nginx-debug, '-g', 'daemon off;']
     ports:
-      - 9012:9012
-      - 9013:9013
+#      - 80:80
+#      - 9012:9012
+#      - 9013:9013
+      - 5432:5432/tcp
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./logs/:/etc/nginx/logs/:rw
+#  baza:
+#    image: postgres:10.5-alpine
+#    restart: always
+##      ports:
+##        - "5432:5432"
+#    volumes:
+#      - ./postgres-data:/var/lib/postgresql/data
+#      - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf:ro
+#    deploy:
+#      restart_policy:
+#        condition: always
